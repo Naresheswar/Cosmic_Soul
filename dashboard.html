@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5ddd1;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: #edd1c5;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header img.logo {
+      height: 40px;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1.5s forwards;
+      font-size: 40px;
+    }
+
+    .fade.delay {
+      animation-delay: 1.2s;
+      font-size: 28px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .image-container {
+      width: 400px;
+      height: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeVisible 0.3s forwards;
+      animation-delay: 2.5s;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    @keyframes fadeVisible {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .image-container img {
+      width: 100%;
+      transform: translateY(100px);
+      animation: bounceSlideIn 1.2s ease-out forwards;
+      animation-delay: 2.6s;
+    }
+
+    @keyframes bounceSlideIn {
+      0% {
+        transform: translateY(100px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+      80% {
+        transform: translateY(5px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    #overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #f5ddd1;
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      gap: 50px;
+      padding: 2rem;
+    }
+
+    #overlay img {
+      max-height: 90vh;
+      animation: zoomIn 0.6s ease-in-out forwards;
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .overlay-right {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+      animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .overlay-right.show {
+      display: flex;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .overlay-right h2 {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .overlay-right button {
+      background-color: #d88d82;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .icon-row {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .icon-row img {
+      height: 36px;
+      width: 36px;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .chat-interface {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      display: none;
+    }
+
+    .chat-interface.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chat-bubble {
+      background-color: #d88d82;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: white;
+      max-width: 250px;
+      margin: 0.5rem 0;
+    }
+
+    .chat-bubble.secondary {
+      background-color: #e2b9b3;
+      margin-left: auto;
+    }
+
+    .chat-container {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 20px;
+      margin-top: 1rem;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <div>
+      <img class="logo" src="logo.png" alt="logo" />
+      <strong> COSMIC SOUL</strong>
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+      <a href="#"><img src="profile.png" height="24" /></a>
+    </nav>
+  </header>
+
+  <div class="hero" id="main">
+    <h2 class="fade">Is This You?</h2>
+    <p class="fade delay">You give your all... but feel invisible.</p>
+
+    <div class="image-container" onclick="expandImage()">
+      <img src="your-image.png" alt="character" id="character-img" />
+    </div>
+  </div>
+
+  <div id="overlay" onclick="collapseImage()">
+    <img src="your-image.png" alt="Full view character" id="full-image" />
+    <div class="overlay-right" id="right-box" onclick="event.stopPropagation()">
+      <h2>Hey, How are you feeling today?</h2>
+      <button>Start Chat</button>
+      <div class="icon-row">
+        <img src="mic-icon.png" alt="mic" onclick="showChat()" />
+        <img src="chat-icon.png" alt="chat" />
+      </div>
+      <div class="chat-interface" id="chatBox">
+        <div class="chat-container">
+          <div class="chat-bubble">Hello! How are you feeling?</div>
+          <div class="chat-bubble secondary">I'm feeling okay.</div>
+          <div class="chat-bubble">That’s great to hear.</div>
+          <div class="chat-bubble secondary">Thank you 😊</div>
+          <div class="chat-bubble" style="text-align: right;">
+            <img src="send-icon.png" height="24" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function expandImage() {
+      document.getElementById('main').classList.add('hidden');
+      document.getElementById('navbar').classList.add('hidden');
+      const overlay = document.getElementById('overlay');
+      const fullImage = document.getElementById('full-image');
+      const rightBox = document.getElementById('right-box');
+
+      overlay.style.display = 'flex';
+      fullImage.src = 'your-image.png';
+
+      setTimeout(() => {
+        fullImage.src = 'change.png';
+        rightBox.classList.add('show');
+      }, 1500);
+    }
+
+    function collapseImage() {
+      document.getElementById('main').classList.remove('hidden');
+      document.getElementById('navbar').classList.remove('hidden');
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('right-box').classList.remove('show');
+      document.getElementById('chatBox').classList.remove('show');
+    }
+
+    function showChat() {
+      document.getElementById('chatBox').classList.add('show');
+    }
+  </script>
+</body>
+</html>

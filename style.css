@@ -1,0 +1,85 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  background-color: #f4ded4;
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Logo Image - clean, larger, no box */
+.logo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Title */
+.title {
+  font-size: 2.6em;
+  letter-spacing: 5px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: 1.4em;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+/* Start Button */
+.start-btn {
+  margin-top: 25px;
+  padding: 14px 35px;
+  background-color: #e4a89d;
+  border: none;
+  border-radius: 25px;
+  color: #333;
+  font-size: 1.2em;
+  font-weight: 600;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: #d39287;
+  transform: scale(1.05);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4ded4;
+  height: 100vh;
+}
+
+/* -- HEADER BAR -- */
+.dashboard-header {
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #eacfc3;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* -- LOGO (immediate display) -- */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* -- FADE-IN NAVBAR SECTION -- */
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #9a59ff;
+}
+
+.profile-icon img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* -- FADE-IN ANIMATION ONLY ON RIGHT PART -- */
+.fade-in {
+  opacity: 0;
+  animation: fadeInOptions 0.8s ease-in-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeInOptions {
+  to {
+    opacity: 1;
+  }
+}
+
+.intro-text {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 80px;
+  color: #222;
+  opacity: 0;
+  animation: fadeInOptions 1s ease-in-out forwards;
+  animation-delay: 2s; /* Starts after navbar */
+}
+
+.image-container img {
+  width: 100%;
+  transform: translateY(-20%); /* Adjusted upward to show only till neck */
+  animation: bounceSlideIn 1.2s ease-out forwards;
+  animation-delay: 2.6s;
+  object-fit: cover;
+}
